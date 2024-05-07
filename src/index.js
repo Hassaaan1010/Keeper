@@ -9,7 +9,7 @@ ReactDOM.render(<App />, document.getElementById("root"));
 //- Create a constant that keeps track of the title and content.
 //- Pass the new note back to the App.
 //- Add new note to an array.
-//- Take array and render seperate Note components for each item.
+//- Take array and render separate Note components for each item.
 
 //2. Implement the delete note functionality.
 //- Callback from the Note component to trigger a delete function.
