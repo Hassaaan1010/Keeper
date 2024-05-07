@@ -5,12 +5,24 @@ function Note(props) {
     <div className="note">
       <h1>{props.title}</h1>
       <p>{props.content}</p>
+
       <button
+        className="delete"
+        name="delete"
         onClick={() => {
           props.delete(props.id);
         }}
       >
         DELETE
+      </button>
+      <button
+        className="edit"
+        name="edit"
+        onClick={() => {
+          props.edit(props.id);
+        }}
+      >
+        EDIT
       </button>
     </div>
   );

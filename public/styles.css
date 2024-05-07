@@ -57,7 +57,6 @@ footer p {
 
 .note button {
   position: relative;
-  float: right;
   margin-right: 10px;
   color: #f5ba13;
   border: none;
@@ -68,6 +67,16 @@ footer p {
   height: 36px;
   cursor: pointer;
   outline: none;
+}
+
+/* edit button */
+.edit {
+  float: right;
+}
+
+/* delete button */
+.delete {
+  float: right;
 }
 
 form {
