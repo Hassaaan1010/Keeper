@@ -5,13 +5,13 @@ import Note from "./Note";
 import CreateArea from "./CreateArea";
 
 function App() {
-  let [noteList, setNoteList] = useState([
+  const [noteList, setNoteList] = useState([
     { title: "asdf", content: "qwerty" },
     { title: "aksdnfdsjnfjs", content: "kasndnsa dajd asjdajdnj" },
   ]);
   const [formTitle, setTitle] = useState("");
   const [formContent, setContent] = useState("");
-  function addNote(obj) {
+  function addNote(obj, edit = false) {
     setNoteList((prevValue) => {
       return [...prevValue, obj];
     });
@@ -26,11 +26,9 @@ function App() {
   }
 
   function editNote(id, newTitle, newContent) {
-    // setNoteList((prevValue) => {
-    //   return prevValue[id] == { title: newTitle, content: newContent };
-    // });
     setTitle(noteList[id].title);
     setContent(noteList[id].content);
+    deleteNote(id);
   }
 
   return (
