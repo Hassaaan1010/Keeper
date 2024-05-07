@@ -12,6 +12,13 @@ function CreateArea(props) {
     setInputText(event.target.value);
   }
 
+  function handleEnter(event) {
+    console.log(event.key || "hello");
+    if (event.key === "") {
+      document.getElementById("addButton").click();
+    }
+  }
+
   return (
     <div>
       <form>
@@ -29,10 +36,12 @@ function CreateArea(props) {
           onChange={handleChangeText}
         />
         <button
+          id="addButton"
           onClick={(event) => {
             event.preventDefault();
             props.addNote({ title: inputTitle, content: inputText });
-            console.log(1);
+            setInputTitle("");
+            setInputText("");
           }}
         >
           Add

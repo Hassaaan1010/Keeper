@@ -5,15 +5,12 @@ import Note from "./Note";
 import CreateArea from "./CreateArea";
 
 function App() {
-  let [noteList, setNoteList] = useState([
-    { title: "asdf", content: "sadf a sdf saf" },
-  ]);
+  let [noteList, setNoteList] = useState([]);
 
   function addNote(obj) {
     setNoteList((prevValue) => {
       return [...prevValue, obj];
     });
-    console.log(2);
   }
 
   function deleteNote(id) {
@@ -29,9 +26,6 @@ function App() {
       <Header />
       <CreateArea addNote={addNote} />
       {noteList.map((elem, index) => {
-        {
-          console.log(elem);
-        }
         return (
           <Note
             key={index}
