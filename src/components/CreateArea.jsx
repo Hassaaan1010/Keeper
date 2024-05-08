@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 
 function CreateArea(props) {
+  const [edited, setEdited] = useState(false);
+
   return (
     <div>
       <form>
@@ -10,7 +12,6 @@ function CreateArea(props) {
           value={props.title}
           onChange={(event) => {
             props.setTitle(event.target.value);
-            setEdited(true);
           }}
         />
         <textarea
@@ -20,19 +21,25 @@ function CreateArea(props) {
           value={props.content}
           onChange={(event) => {
             props.setContent(event.target.value);
-            setEdited(true);
           }}
         />
         <button
           id="addButton"
           onClick={(event) => {
             event.preventDefault();
-            props.addNote({ title: props.title, content: props.content });
+            if (props.id == null) {
+              props.addNote(
+                { title: props.title, content: props.content },
+                edited
+              );
+            } else {
+              props.editEnd(props.id, props.title, props.content);
+            }
             props.setTitle("");
             props.setContent("");
           }}
         >
-          Add
+          Save
         </button>
       </form>
     </div>

@@ -5,12 +5,10 @@ import Note from "./Note";
 import CreateArea from "./CreateArea";
 
 function App() {
-  const [noteList, setNoteList] = useState([
-    { title: "asdf", content: "qwerty" },
-    { title: "aksdnfdsjnfjs", content: "kasndnsa dajd asjdajdnj" },
-  ]);
-  const [formTitle, setTitle] = useState("");
-  const [formContent, setContent] = useState("");
+  let [noteList, setNoteList] = useState([]);
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+  const [id, setId] = useState(null);
   function addNote(obj, edit = false) {
     setNoteList((prevValue) => {
       return [...prevValue, obj];
@@ -25,10 +23,21 @@ function App() {
     });
   }
 
-  function editNote(id, newTitle, newContent) {
+  function editNoteStart(id) {
+    setId(id);
     setTitle(noteList[id].title);
     setContent(noteList[id].content);
-    deleteNote(id);
+  }
+
+  function editNoteEnd(id, newTitle, newContent) {
+    setNoteList((prevValue) => {
+      prevValue[id] = {
+        title: newTitle,
+        content: newContent,
+      };
+      return prevValue;
+    });
+    setId(null);
   }
 
   return (
@@ -36,8 +45,11 @@ function App() {
       <Header />
       <CreateArea
         addNote={addNote}
-        title={formTitle}
-        content={formContent}
+        editEnd={editNoteEnd}
+        id={id}
+        title={title}
+        content={content}
+        setId={setId}
         setTitle={setTitle}
         setContent={setContent}
       />
@@ -49,7 +61,7 @@ function App() {
             title={elem.title}
             content={elem.content}
             delete={deleteNote}
-            edit={editNote}
+            editStart={editNoteStart}
           />
         );
       })}

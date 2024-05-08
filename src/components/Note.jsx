@@ -19,7 +19,7 @@ function Note(props) {
         className="edit"
         name="edit"
         onClick={() => {
-          props.edit(props.id);
+          props.editStart(props.id);
         }}
       >
         EDIT
